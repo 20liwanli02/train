@@ -8,4 +8,6 @@
 
 5.application.properties在member模块放在了resources下，则common模块不能直接放在resources下，否则会冲突，所以可以添加config文件夹，默认也可以读到
 
-6.
+6.当一个功能比较复杂可以考虑定位一个模块，如网关模块
+
+7.网关模块不需要前缀
