@@ -39,3 +39,5 @@ If you want an embedded database (H2, HSQL or Derby), please put it on the class
 If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
 
 可能为新建连接文件，IDEA没有及时更新进仓库（clean，install）
+
+13.开发规定，生成器生成的4个文件都不能手动修改（只生成单表的增删改查）

@@ -11,7 +11,7 @@ public class MemberService {
     private MemberMapper memberMapper;
 
     public int count(){
-        int count = memberMapper.count();
+        int count = Math.toIntExact(memberMapper.countByExample(null));
         return count;
     }
 }
