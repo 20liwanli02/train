@@ -19,3 +19,23 @@
 10.路由转发不要把spring写成sprign了
 
 11.网关模块配置外网IP，其他模块配置内网IP，防止用户绕过gateway
+
+12.连接数据库出错
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+Reason: Failed to determine a suitable driver class
+
+
+Action:
+
+Consider the following:
+If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+
+可能为新建连接文件，IDEA没有及时更新进仓库（clean，install）
