@@ -21,6 +21,7 @@ public class BusinessException extends RuntimeException {
 
     /**
      * 不写入堆栈信息，提高性能
+     * 消除多余的日志。因为产生异常的原因自己已经知晓，没必要太详细
      */
     @Override
     public Throwable fillInStackTrace() {
