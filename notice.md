@@ -41,3 +41,7 @@ If you have database settings to be loaded from a particular profile you may nee
 可能为新建连接文件，IDEA没有及时更新进仓库（clean，install）
 
 13.开发规定，生成器生成的4个文件都不能手动修改（只生成单表的增删改查）
+
+14.node.js安装新的高版本，会在原来的版本上升级
+
+15.vue-cli安装失败，看看是不是已经安装了
