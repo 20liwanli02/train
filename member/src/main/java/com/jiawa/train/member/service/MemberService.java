@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import com.jiawa.train.member.domain.Member;
 import com.jiawa.train.member.domain.MemberExample;
 import com.jiawa.train.member.mapper.MemberMapper;
+import com.jiawa.train.member.req.MemberRegisterReq;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,10 @@ public class MemberService {
     /**
      * 注册会员账号：插入用户记录
      */
-    public long register(String mobile){
+    public long register(MemberRegisterReq req){
+        //将封装类中的属性拿出来，转为String类型
+        String mobile = req.getMobile();
+
         //查询数据库中是否已经存在mobile
         //类似与where
         MemberExample memberExample = new MemberExample();
