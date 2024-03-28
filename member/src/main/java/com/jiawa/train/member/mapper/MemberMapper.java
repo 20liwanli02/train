@@ -2,12 +2,9 @@ package com.jiawa.train.member.mapper;
 
 import com.jiawa.train.member.domain.Member;
 import com.jiawa.train.member.domain.MemberExample;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
-@Mapper
 public interface MemberMapper {
     long countByExample(MemberExample example);
 
