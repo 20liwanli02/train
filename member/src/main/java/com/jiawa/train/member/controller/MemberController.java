@@ -42,6 +42,7 @@ public class MemberController {
 
     /**
      *生成短信验证码
+     * RequestBody：接收json类型的参数
      */
     @PostMapping("/sendcode")
     public CommonResp<Long> sendcode(@Valid @RequestBody MemberSendCodeReq req){
@@ -54,7 +55,7 @@ public class MemberController {
      *登录功能
      */
     @PostMapping("/login")
-    public CommonResp<MemberLoginResp> sendcode(@Valid MemberLoginReq req){
+    public CommonResp<MemberLoginResp> sendcode(@Valid @RequestBody MemberLoginReq req){
         MemberLoginResp resp = memberService.login(req);
         return new CommonResp<MemberLoginResp>(resp);
     }

@@ -55,3 +55,5 @@ request:XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, wit
 status:200
 statusText:"OK"
 [[Prototype]]:Object
+
+17.respond.data 到了 CommonResp 这一层

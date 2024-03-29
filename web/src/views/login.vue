@@ -6,8 +6,6 @@
           :model="loginForm"
           name="basic"
           autocomplete="off"
-          @finish="onFinish"
-          @finishFailed="onFinishFailed"
       >
         <a-form-item
             label="手机号："
@@ -42,7 +40,8 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import axios from 'axios';
-// import { notification } from 'ant-design-vue';
+//导入通知组件
+import { notification } from 'ant-design-vue';
 // import { useRouter } from 'vue-router'
 // import store from "@/store";
 
@@ -56,50 +55,41 @@ export default defineComponent({
       code: '',
     });
 
-    const onFinish = values => {
-      console.log('Success:',values);
-    }
-
-    const onFinishFailed = errorInfo => {
-      console.log('Failed:', errorInfo);
-    };
-
     const sendCode = () => {
       axios.post("http://localhost:8000/member/member/sendcode", {
         mobile: loginForm.mobile
       }).then(response => {
-        console.log(response);
-        // let data = response.data;
-        // if (data.success) {
-        //   notification.success({ description: '发送验证码成功！' });
-        //   loginForm.code = "8888";
-        // } else {
-        //   notification.error({ description: data.message });
-        // }
+        // console.log(response);
+        let data = response.data;
+        if (data.success) {
+          notification.success({ description: '发送验证码成功！' });
+          loginForm.code = "8888";
+        } else {
+          notification.error({ description: data.message });
+        }
       });
     };
     //
-    // const login = () => {
-    //   axios.post("/member/member/login", loginForm).then((response) => {
-    //     let data = response.data;
-    //     if (data.success) {
-    //       notification.success({ description: '登录成功！' });
-    //       // 登录成功，跳到控台主页
-    //       router.push("/welcome");
-    //       store.commit("setMember", data.content);
-    //     } else {
-    //       notification.error({ description: data.message });
-    //     }
-    //   })
-    // };
+    const login = () => {
+      axios.post("http://localhost:8000/member/member/login", loginForm).then((response) => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({ description: '登录成功！' });
+          // 登录成功，跳到控台主页
+          // router.push("/welcome");
+          // store.commit("setMember", data.content);
+        } else {
+          notification.error({ description: data.message });
+        }
+      })
+    };
 
     return {
       loginForm,
       sendCode,
-      // login
-      onFinish,
-      onFinishFailed,
+      login,
     };
+
   },
 });
 </script>
