@@ -1,8 +1,10 @@
 package com.jiawa.train.member.controller;
 
 import com.jiawa.train.common.resp.CommonResp;
+import com.jiawa.train.member.req.MemberLoginReq;
 import com.jiawa.train.member.req.MemberRegisterReq;
 import com.jiawa.train.member.req.MemberSendCodeReq;
+import com.jiawa.train.member.resp.MemberLoginResp;
 import com.jiawa.train.member.service.MemberService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -33,7 +35,7 @@ public class MemberController {
      * 注册会员账号：插入用户记录
      * Valid：参数校验，犹如开关，加上后校验打开
      */
-    @PostMapping("register")
+    @PostMapping("/register")
     public CommonResp<Long> register(@Valid MemberRegisterReq req){
         long register = memberService.register(req);
         CommonResp<Long> commonResp = new CommonResp<>();
@@ -44,9 +46,19 @@ public class MemberController {
     /**
      *生成短信验证码
      */
-    @PostMapping("sendcode")
+    @PostMapping("/sendcode")
     public CommonResp<Long> sendcode(@Valid MemberSendCodeReq req){
         memberService.sendCode(req);
         return new CommonResp<>();
+    }
+
+
+    /**
+     *登录功能
+     */
+    @PostMapping("/login")
+    public CommonResp<MemberLoginResp> sendcode(@Valid MemberLoginReq req){
+        MemberLoginResp resp = memberService.login(req);
+        return new CommonResp<MemberLoginResp>(resp);
     }
 }

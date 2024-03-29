@@ -9,9 +9,9 @@ public enum BusinessExceptionEnum {
     /**
      * 枚举值，类似于枚举类的实例对象
      */
-    MEMBER_MOBILE_EXIST("手机号已注册"),
-//    MEMBER_MOBILE_NOT_EXIST("请先获取短信验证码"),
-//    MEMBER_MOBILE_CODE_ERROR("短信验证码错误"),
+    MEMBER_MOBILE_EXIST("手机号已注册！"),
+    MEMBER_MOBILE_NOT_EXIST("请先获取短信验证码！"),
+    MEMBER_MOBILE_CODE_ERROR("短信验证码错误！"),
 //
 //    BUSINESS_STATION_NAME_UNIQUE_ERROR("车站已存在"),
 //    BUSINESS_TRAIN_CODE_UNIQUE_ERROR("车次编号已存在"),
