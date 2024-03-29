@@ -10,19 +10,19 @@
           @finishFailed="onFinishFailed"
       >
         <a-form-item
-            label=""
+            label="手机号："
             name="mobile"
             :rules="[{ required: true, message: '请输入手机号!' }]"
         >
-          <a-input v-model:value="loginForm.mobile" placeholder="手机号"/>
+          <a-input v-model:value="loginForm.mobile" placeholder="mobile"/>
         </a-form-item>
 
         <a-form-item
-            label=""
+            label="验证码："
             name="code"
             :rules="[{ required: true, message: '请输入验证码!' }]"
         >
-          <a-input v-model:value="loginForm.code">
+          <a-input v-model:value="loginForm.code" placeholder="code">
             <template #addonAfter>
               <a @click="sendCode">获取验证码</a>
             </template>
@@ -52,7 +52,7 @@ export default defineComponent({
     // const router = useRouter();
 
     const loginForm = reactive({
-      mobile: '13000000000',
+      mobile: '',
       code: '',
     });
 
