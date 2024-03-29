@@ -8,10 +8,7 @@ import com.jiawa.train.member.resp.MemberLoginResp;
 import com.jiawa.train.member.service.MemberService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/member")
@@ -47,7 +44,7 @@ public class MemberController {
      *生成短信验证码
      */
     @PostMapping("/sendcode")
-    public CommonResp<Long> sendcode(@Valid MemberSendCodeReq req){
+    public CommonResp<Long> sendcode(@Valid @RequestBody MemberSendCodeReq req){
         memberService.sendCode(req);
         return new CommonResp<>();
     }

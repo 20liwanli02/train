@@ -11,10 +11,11 @@ mobile=123456789
 ###
 
 POST http://localhost:8000/member/member/sendcode
-Content-Type: application/x-www-form-urlencoded
+Content-Type: application/json
 
-mobile=13000000001
-
+{
+"mobile" : "13000000001"
+}
 ###
 
 POST http://localhost:8000/member/member/login

@@ -45,3 +45,13 @@ If you have database settings to be loaded from a particular profile you may nee
 14.node.js安装新的高版本，会在原来的版本上升级
 
 15.vue-cli安装失败，看看是不是已经安装了
+
+16.前端请求后端时，参数的格式不对，报错如下
+Object
+config:{transitional: {…}, adapter: Array(2), transformRequest: Array(1), transformResponse: Array(1), timeout: 0, …}
+data:{success: false, message: '手机号不能为空！', content: null}
+headers:AxiosHeaders {content-type: 'application/json'}
+request:XMLHttpRequest {onreadystatechange: null, readyState: 4, timeout: 0, withCredentials: false, upload: XMLHttpRequestUpload, …}
+status:200
+statusText:"OK"
+[[Prototype]]:Object
