@@ -68,6 +68,13 @@
                 <version>8.0.25</version>
             </dependency>
 
+            <!--        5.8.1-->
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>5.8.1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
