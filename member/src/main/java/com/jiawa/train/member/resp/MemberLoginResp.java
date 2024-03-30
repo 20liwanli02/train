@@ -1,9 +1,22 @@
 package com.jiawa.train.member.resp;
 
+/**
+ * 防止查询时把密码等敏感信息返回，封装返回内容，不返回敏感值
+ */
 public class MemberLoginResp {
     private Long id;
 
     private String mobile;
+
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;
@@ -23,13 +36,11 @@ public class MemberLoginResp {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", mobile=").append(mobile);
-        sb.append("]");
+        final StringBuffer sb = new StringBuffer("MemberLoginResp{");
+        sb.append("id=").append(id);
+        sb.append(", mobile='").append(mobile).append('\'');
+        sb.append(", token='").append(token).append('\'');
+        sb.append('}');
         return sb.toString();
     }
 }

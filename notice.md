@@ -59,3 +59,5 @@ statusText:"OK"
 17.respond.data 到了 CommonResp 这一层
 
 18.像layout布局一样，官方贴心的把布局的每一块的样式写在了每一块代码里面
+
+19.登录注册二合一时没有填验证码显示的报错信息
