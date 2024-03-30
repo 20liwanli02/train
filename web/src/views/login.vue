@@ -43,7 +43,7 @@ import axios from 'axios';
 //导入通知组件
 import { notification } from 'ant-design-vue';
 import { useRouter } from 'vue-router'
-// import store from "@/store";
+import store from "@/store";
 
 export default defineComponent({
   name: "login-view",
@@ -51,7 +51,7 @@ export default defineComponent({
     const router = useRouter();
 
     const loginForm = reactive({
-      mobile: '',
+      mobile: '13000000001',
       code: '',
     });
 
@@ -77,7 +77,7 @@ export default defineComponent({
           notification.success({ description: '登录成功！' });
           // 登录成功，跳到控台主页
           router.push("/");
-          // store.commit("setMember", data.content);
+          store.commit("setMember", data.content);
         } else {
           notification.error({ description: data.message });
         }
