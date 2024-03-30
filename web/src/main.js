@@ -40,3 +40,12 @@ axios.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
+/**
+ * 配置动态地址头
+ */
+axios.defaults.baseURL = process.env.VUE_APP_SERVER;
+/**
+ * 打印当前环境
+ */
+console.log('环境：', process.env.NODE_ENV);
+console.log('服务端：', process.env.VUE_APP_SERVER);
