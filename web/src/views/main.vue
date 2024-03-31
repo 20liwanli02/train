@@ -30,6 +30,7 @@ export default defineComponent({
     TheSiderView,
     TheHeaderView,
   },
+  // setup()在页面加载的时候就执行了
   setup() {
     const count = ref(0);
     axios.get("member/member/count").then((response) => {

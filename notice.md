@@ -66,3 +66,9 @@ statusText:"OK"
 Unable to start LiveReload server
 端口冲突？
 修改端口：spring.devtools.livereload.port=35731
+
+21.为什么返回时才强制跳转登陆页面？
+在后端才进行登录校验，返回时跳转更加便利
+
+22.为什么前端也要设置登录校验？
+直接在浏览器上输入地址，在未登录的情况下可以跳转只是无法拿到数据，明显不合理
