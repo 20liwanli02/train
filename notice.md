@@ -90,3 +90,7 @@ http://localhost:9000/welcome
 3.由25、26得
 从头看，进入app.vue此时路劲为http://localhost:9000/，加载了app的子组件-》main.vue，app的占位符就是此组件；
 然后，进入main.vue组件，路径为http://localhost:9000/welcome，，加载了main的子组件welcome.vue组件，main的占位符就是welcome组件。
+
+28.响应式变量
+
+29.echarts数据报表
