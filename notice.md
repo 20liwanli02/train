@@ -2,7 +2,7 @@
 
 2.git安装后重启电脑，否则环境变量不生效
 
-3.公共的依赖放在common，依赖的版本放置在trian的pom.xml
+3.公共的依赖放在common，依赖的版本放置在train的pom.xml
 
 4.移动依赖发现找不到导入的模块依赖，有可能是新建的模块没有安装进入仓库（父项目clean，install把子模块安装进入仓库）
 
@@ -78,3 +78,15 @@ Unable to start LiveReload server
 token失效
 
 24.拦截器的优先级高于日志
+
+25.加载二级路由时，一级路由已经加载完毕，路径是什么就加载什么
+
+26.现在路径是什么，<route-view/>就是什么
+
+27.为什么访问某个路径就会显示对应的某个页面
+http://localhost:9000/welcome
+1.加载了两个组件：main.vue和welcome.vue
+2.app.vue和main.vue中各有一个位置占位符
+3.由25、26得
+从头看，进入app.vue此时路劲为http://localhost:9000/，加载了app的子组件-》main.vue，app的占位符就是此组件；
+然后，进入main.vue组件，路径为http://localhost:9000/welcome，，加载了main的子组件welcome.vue组件，main的占位符就是welcome组件。
