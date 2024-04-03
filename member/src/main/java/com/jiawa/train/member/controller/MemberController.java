@@ -55,7 +55,7 @@ public class MemberController {
      *登录功能
      */
     @PostMapping("/login")
-    public CommonResp<MemberLoginResp> sendcode(@Valid @RequestBody MemberLoginReq req){
+    public CommonResp<MemberLoginResp> login(@Valid @RequestBody MemberLoginReq req){
         MemberLoginResp resp = memberService.login(req);
         return new CommonResp<MemberLoginResp>(resp);
     }
