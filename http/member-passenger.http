@@ -22,3 +22,9 @@ token: {{token}}
 }
 
 ###
+
+GET http://localhost:8001/member/passenger/query-list
+Accept: application/json
+token: {{token}}
+
+###

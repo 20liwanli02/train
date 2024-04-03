@@ -94,3 +94,6 @@ http://localhost:9000/welcome
 28.响应式变量
 
 29.echarts数据报表
+
+30.post请求数据，后面参数用的是json格式，所以接收时要定义json格式接收，
+但get请求参数增加在了url后面，可以不用json格式接收
