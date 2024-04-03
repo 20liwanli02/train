@@ -2,7 +2,7 @@
   <p>
   <a-button type="primary" @click="showModal">新增</a-button>
   </p>
-  <a-table :dataSource="dataSource" :columns="columns" />
+  <a-table :dataSource="passengers" :columns="columns" />
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -24,7 +24,7 @@
 
 
 <script>
-import {defineComponent,ref,reactive} from "vue";
+import {defineComponent,ref,reactive,onMounted} from "vue";
 import {notification} from "ant-design-vue";
 import axios from "axios";
 
@@ -42,18 +42,7 @@ export default defineComponent({
       updateTime: undefined,
     });
 
-    const dataSource = [
-          {
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号',
-          },
-          {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号',}];
+    const passengers = ref([]);
 
         const columns = [
           {
@@ -62,44 +51,48 @@ export default defineComponent({
             key: 'name',
           },
           {
-            title: '年龄',
-            dataIndex: 'age',
-            key: 'age',
+            title: '身份证',
+            dataIndex: 'idCard',
+            key: 'idCard',
           },
           {
-            title: '住址',
-            dataIndex: 'address',
-            key: 'address',
+            title: '旅客类型',
+            dataIndex: 'type',
+            key: 'type',
           },];
-    // const passengers = ref([]);
     // // 分页的三个属性名是固定的
     // const pagination = ref({
     //   total: 0,
     //   current: 1,
     //   pageSize: 10,
     // });
-    // let loading = ref(false);
-    // const columns = [
-    //   {
-    //     title: '姓名',
-    //     dataIndex: 'name',
-    //     key: 'name',
-    //   },
-    //   {
-    //     title: '身份证',
-    //     dataIndex: 'idCard',
-    //     key: 'idCard',
-    //   },
-    //   {
-    //     title: '旅客类型',
-    //     dataIndex: 'type',
-    //     key: 'type',
-    //   },
-    //   {
-    //     title: '操作',
-    //     dataIndex: 'operation'
-    //   }
-    // ];
+
+    const handleQuery = (param) => {
+      // if (!param) {
+      //   param = {
+      //     page: 1,
+      //     size: pagination.value.pageSize
+      //   };
+      // }
+      // loading.value = true;
+      axios.get("/member/passenger/query-list", {
+        params: {
+          page: param.page,
+          size: param.size
+        }
+      }).then((response) => {
+        // loading.value = false;
+        let data = response.data;
+        if (data.success) {
+          passengers.value = data.content.list;
+          // 设置分页控件的值
+          // pagination.value.current = param.page;
+          // pagination.value.total = data.content.total;
+        } else {
+          notification.error({description: data.message});
+        }
+      });
+    };
 
     const showModal = () => {
       visible.value = true;
@@ -121,13 +114,20 @@ export default defineComponent({
       });
     };
 
+    onMounted(() => {
+      handleQuery({
+        page: 1,
+        // size: pagination.value.pageSize
+        size: 1
+      });
+    });
 
     return {
       visible,
       showModal,
       handleOk,
       passenger,
-      dataSource,
+      passengers,
       columns,
     };
   },
