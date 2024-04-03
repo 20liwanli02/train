@@ -2,7 +2,7 @@
   <p>
   <a-button type="primary" @click="showModal">新增</a-button>
   </p>
-  <a-table :dataSource="passengers" :columns="columns" :pagination="pagination"/>
+  <a-table :dataSource="passengers" :columns="columns" :pagination="pagination" @change="handleTableChange"/>
   <a-modal v-model:visible="visible" title="乘车人" @ok="handleOk" ok-text="确认" cancel-text="取消">
     <a-form :model="passenger" :label-col="{span: 4}" :wrapper-col="{ span: 20 }">
       <a-form-item label="姓名">
@@ -87,11 +87,19 @@ export default defineComponent({
           passengers.value = data.content.list;
           pagination.total = data.content.total;
           // 设置分页控件的值
-          // pagination.value.current = param.page;
+          pagination.current = param.page;
           // pagination.value.total = data.content.total;
         } else {
           notification.error({description: data.message});
         }
+      });
+    };
+
+    const handleTableChange = (pagination) => {
+      // console.log("看看自带的分页参数都有啥：" + pagination);
+      handleQuery({
+        page: pagination.current,
+        size: pagination.pageSize
       });
     };
 
@@ -118,8 +126,8 @@ export default defineComponent({
     onMounted(() => {
       handleQuery({
         page: 1,
-        // size: pagination.value.pageSize
-        size: 2
+        size: pagination.pageSize
+        // size: 2
       });
     });
 
@@ -131,6 +139,7 @@ export default defineComponent({
       passengers,
       columns,
       pagination,
+      handleTableChange,
     };
   },
 })
