@@ -28,3 +28,9 @@ Accept: application/json
 token: {{token}}
 
 ###
+
+GET http://localhost:8001/member/passenger/query-list?page=1&size=2
+Accept: application/json
+token: {{token}}
+
+###

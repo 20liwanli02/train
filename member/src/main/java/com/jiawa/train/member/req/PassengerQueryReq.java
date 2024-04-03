@@ -1,6 +1,8 @@
 package com.jiawa.train.member.req;
 
-public class PassengerQueryReq {
+import com.jiawa.train.common.req.PageReq;
+
+public class PassengerQueryReq extends PageReq {
     private Long memberId;
 
 
