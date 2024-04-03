@@ -1,4 +1,4 @@
-package com.jiawa.train.common.req;
+package com.jiawa.train.common.resp;
 
 
 import jakarta.validation.constraints.Max;
@@ -12,7 +12,6 @@ public class PageReq {
     @NotNull(message = "【每页条数】不能为空")
     @Max(value = 100, message = "【每页条数】不能超过100")
     private Integer size;
-
 
     public Integer getPage() {
         return page;

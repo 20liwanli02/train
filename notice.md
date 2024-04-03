@@ -97,3 +97,7 @@ http://localhost:9000/welcome
 
 30.post请求数据，后面参数用的是json格式，所以接收时要定义json格式接收，
 但get请求参数增加在了url后面，可以不用json格式接收
+
+31.PageResp<PassengerQueryResp>
+泛型：数据被封装成了一个PassengerQueryResp的对象
+返回类型：但是要返回PageResp类型，没有记得封装
