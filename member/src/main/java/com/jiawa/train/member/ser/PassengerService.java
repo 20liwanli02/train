@@ -1,4 +1,4 @@
-package com.jiawa.train.member.service;
+package com.jiawa.train.member.ser;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
@@ -23,15 +23,12 @@ import java.util.List;
 
 @Service
 public class PassengerService {
-
     private static final Logger LOG = LoggerFactory.getLogger(PassengerService.class);
 
-    @Resource
+     @Resource
     private PassengerMapper passengerMapper;
 
-    /**
-     *增加乘车人信息
-     */
+
     public void save(PassengerSaveReq req){
         DateTime now = DateTime.now();
         Passenger passenger = BeanUtil.copyProperties(req, Passenger.class);
@@ -48,9 +45,6 @@ public class PassengerService {
 
     }
 
-    /**
-     *查询乘车人信息
-     */
     public PageResp<PassengerQueryResp> queryList(PassengerQueryReq req){
         PassengerExample passengerExample = new PassengerExample();
         passengerExample.setOrderByClause("id desc");
@@ -62,7 +56,7 @@ public class PassengerService {
         LOG.info("每页条数：{}",req.getSize());
         PageHelper.startPage(req.getPage(),req.getSize());
         List<Passenger> passengerlist = passengerMapper.selectByExample(passengerExample);
-        //类似于生成了一个查询总数的sql语句
+        //类似于生成了�?个查询�?�数的sql语句
         PageInfo<Passenger> pageInfo = new PageInfo<>(passengerlist);
         LOG.info("总行数：{}",pageInfo.getTotal());
         LOG.info("总页数：{}",pageInfo.getPages());
@@ -73,11 +67,7 @@ public class PassengerService {
         return PageResp;
     }
 
-    /**
-     * 删除乘车人信息
-     */
     public void delete(Long id){
         passengerMapper.deleteByPrimaryKey(id);
     }
-
 }
