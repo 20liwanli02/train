@@ -101,3 +101,5 @@ http://localhost:9000/welcome
 31.PageResp<PassengerQueryResp>
 泛型：数据被封装成了一个PassengerQueryResp的对象
 返回类型：但是要返回PageResp类型，没有记得封装
+
+32.使用ref，取值赋值都加上.value
