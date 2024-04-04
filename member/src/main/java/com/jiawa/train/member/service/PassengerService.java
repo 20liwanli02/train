@@ -74,5 +74,11 @@ public class PassengerService {
         return PageResp;
     }
 
+    /**
+     * 删除乘车人信息
+     */
+    public void delete(Long id){
+        passengerMapper.deleteByPrimaryKey(id);
+    }
 
 }

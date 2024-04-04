@@ -38,5 +38,14 @@ public class PassengerController {
         return new CommonResp<>(list);
     }
 
+    /**
+     * 删除乘车人信息
+     * PathVariable：路径上的变量（id）
+     */
+    @DeleteMapping("/delete/{id}")
+    public CommonResp<Object> delete(@PathVariable Long id){
+        passengerService.delete(id);
+        return new CommonResp<>();
+    }
 
 }
