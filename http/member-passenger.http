@@ -40,9 +40,9 @@ Content-Type: application/json
 token: {{token}}
 
 {
-  "id": 1775786205426880512,
+  "id": 1775562332135624704,
   "memberId": 1773711263029923840,
-  "name" : "王五",
-  "idCard" : "123321",
+  "name" : "ade",
+  "idCard" : "123ade321",
   "type" : "1"
 }
