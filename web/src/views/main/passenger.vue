@@ -6,6 +6,9 @@
     </a-space>
   </p>
   <a-table :dataSource="passengers" :columns="columns" :pagination="pagination" @change="handleTableChange" :loading="loading">
+<!--    增加普通的属性列，直接再columns里加就行了，对应好name，type等自动会加上
+        但增加编辑删除等按钮需要用到下面的特殊的写法
+        -->
     <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
         <a-space>
@@ -135,11 +138,13 @@ export default defineComponent({
     };
 
     const onAdd = () => {
+      passenger.value = {};
       visible.value = true;
     };
 
     const onEdit = (record) => {
-      passenger.value = record;
+      // record还是双向绑定的？原来类似于针织的赋值，现在咋先copy一份再赋值
+      passenger.value = window.Tool.copy(record);
       visible.value = true;
     }
 
