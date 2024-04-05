@@ -7,17 +7,17 @@ import org.dom4j.DocumentException;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServerGenerator {
 
-    static String toPath = "[module]/src/main/java/com/jiawa/train/[module]/ser/";
+    static String toPath = "[module]/src/main/java/com/jiawa/train/[module]/";
     static String pomPath = "generator\\pom.xml";
-    static {
-        new File(toPath).mkdirs();
-    }
+//    static {
+//        new File(toPath).mkdirs();
+//    }
 
     public static void main(String[] args) throws Exception, TemplateException {
         String generatorPath = getGeneratorPath();
@@ -35,9 +35,9 @@ public class ServerGenerator {
         System.out.println(tableName.getText() + "/" + domainObjectName.getText());
 
         // 示例：表名 jiawa_test
-        // Domain = JiawaTest
+        // Domain = JiawaTest，Passenger
         String Domain = domainObjectName.getText();
-        // domain = jiawaTest
+        // domain = jiawaTest，passenger
         String domain = Domain.substring(0, 1).toLowerCase() + Domain.substring(1);
         // do_main = jiawa-test
         String do_main = tableName.getText().replaceAll("_", "-");
@@ -50,8 +50,17 @@ public class ServerGenerator {
         param.put("do_main", do_main);
         System.out.println("组装参数：" + param);
 
-        FreemarkerUtil.initConfig("service.ftl");
-        FreemarkerUtil.generator(toPath+Domain+"Service.java",param);
+        gen(Domain, param,"service");
+        gen(Domain, param,"controller.ftl");
+    }
+
+    private static void gen(String Domain, Map<String, Object> param, String target) throws IOException, TemplateException {
+        FreemarkerUtil.initConfig(target+".ftl");
+        String Path = toPath+target+"/";
+        String Target = target.substring(0,1).toUpperCase()+target.substring(1);
+        String fileName = Path + Domain + Target + ".java";
+        System.out.println(fileName);
+        FreemarkerUtil.generator(fileName, param);
     }
 
     private static String getGeneratorPath() throws DocumentException {
