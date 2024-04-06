@@ -58,6 +58,7 @@ import axios from "axios";
 
 
 export default defineComponent({
+  name: "passenger-view",
   setup() {
     const PASSENGER_TYPE_ARRAY = window.PASSENGER_TYPE_ARRAY;
     const visible = ref(false);
@@ -74,6 +75,11 @@ export default defineComponent({
     const passengers = ref([]);
 
         const columns = [
+          {
+            title: '会员id',
+            dataIndex: 'memberId',
+            key: 'memberId',
+          },
           {
             title: '姓名',
             dataIndex: 'name',
@@ -98,7 +104,7 @@ export default defineComponent({
     const pagination = ref({
       total: 0,
       current: 1,
-      pageSize: 2,
+      pageSize: 10,
     });
 
     /**

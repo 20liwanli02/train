@@ -9,12 +9,12 @@ import org.dom4j.DocumentException;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 public class ServerGenerator {
-    static boolean readOnly = false;
+    static boolean readOnly = true;
+    static String vuePath = "web/src/views/main/rer/";
 //    static String vuePath = "admin/src/views/main/";
     static String serverPath = "[module]/src/main/java/com/jiawa/train/[module]/";
     static String pomPath = "generator/pom.xml";
@@ -73,35 +73,35 @@ public class ServerGenerator {
         param.put("tableNameCn", tableNameCn);
         param.put("fieldList", fieldList);
         param.put("typeSet", typeSet);
-//        param.put("readOnly", readOnly);
+        param.put("readOnly", readOnly);
         System.out.println("组装参数：" + param);
 
 //        gen(Domain, param, "service", "service");
 //        gen(Domain, param, "controller/admin", "adminController");
 //        gen(Domain, param, "rer", "saveReq");
-        gen(Domain, param, "rer", "queryReq");
-        gen(Domain, param, "rer", "queryResp");
-
-//        genVue(do_main, param);
+//        gen(Domain, param, "rer", "queryReq");
+//        gen(Domain, param, "rer", "queryResp");
+        genVue(do_main, param);
     }
 
     private static void gen(String Domain, Map<String, Object> param, String packageName, String target) throws IOException, TemplateException {
         FreemarkerUtil.initConfig(target + ".ftl");
         String toPath = serverPath + packageName + "/";
-        new File(toPath).mkdirs();
+//        new File(toPath).mkdirs();
         String Target = target.substring(0, 1).toUpperCase() + target.substring(1);
         String fileName = toPath + Domain + Target + ".java";
         System.out.println("开始生成：" + fileName);
         FreemarkerUtil.generator(fileName, param);
     }
 
-//    private static void genVue(String do_main, Map<String, Object> param) throws IOException, TemplateException {
-//        FreemarkerUtil.initConfig("vue.ftl");
+    private static void genVue(String do_main, Map<String, Object> param) throws IOException, TemplateException {
+        FreemarkerUtil.initConfig("vue.ftl");
 //        new File(vuePath + module).mkdirs();
+        String fileName = vuePath  + do_main + ".vue";
 //        String fileName = vuePath + module + "/" + do_main + ".vue";
-//        System.out.println("开始生成：" + fileName);
-//        FreemarkerUtil.generator(fileName, param);
-//    }
+        System.out.println("开始生成：" + fileName);
+        FreemarkerUtil.generator(fileName, param);
+    }
 
     private static String getGeneratorPath() throws DocumentException {
         SAXReader saxReader = new SAXReader();
