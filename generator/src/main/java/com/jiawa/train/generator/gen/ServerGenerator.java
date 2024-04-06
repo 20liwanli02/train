@@ -78,9 +78,9 @@ public class ServerGenerator {
 
 //        gen(Domain, param, "service", "service");
 //        gen(Domain, param, "controller/admin", "adminController");
-        gen(Domain, param, "rer", "saveReq");
-//        gen(Domain, param, "req", "queryReq");
-//        gen(Domain, param, "resp", "queryResp");
+//        gen(Domain, param, "rer", "saveReq");
+        gen(Domain, param, "rer", "queryReq");
+        gen(Domain, param, "rer", "queryResp");
 
 //        genVue(do_main, param);
     }
