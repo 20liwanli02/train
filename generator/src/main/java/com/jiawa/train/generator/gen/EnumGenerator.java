@@ -2,7 +2,7 @@ package com.jiawa.train.generator.gen;
 
 
 import cn.hutool.core.util.StrUtil;
-import com.jiawa.train.generator.enums.PassengerTypeEnum;
+import com.jiawa.train.member.enums.PassengerTypeEnum;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
