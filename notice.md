@@ -103,3 +103,7 @@ http://localhost:9000/welcome
 返回类型：但是要返回PageResp类型，没有记得封装
 
 32.使用ref，取值赋值都加上.value
+
+33.main函数执行乱码
+
+34.依赖子模块显示jar不存在
