@@ -1,51 +1,36 @@
-package com.jiawa.train.member.rer;
+package com.jiawa.train.business.req;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
-public class PassengerSaveReq {
+public class StationSaveReq {
 
     /**
      * id
      */
     private Long id;
 
-    /**
-     * ��Աid
-     */
-    @NotNull(message = "��Աid不能为空�?")
-    private Long memberId;
 
-    /**
-     * ����
-     */
-    @NotBlank(message = "����不能为空�?")
+    @NotBlank(message = "վ��不能为空�?")
     private String name;
 
-    /**
-     * ���֤
-     */
-    @NotBlank(message = "���֤不能为空�?")
-    private String idCard;
+
+    @NotBlank(message = "վ��ƴ��不能为空�?")
+    private String namePinyin;
 
     /**
-     * �ÿ�����|ö��[PassengerTypeEnum]
+     * վ��ƴ������ĸ
      */
-    @NotBlank(message = "�ÿ�����不能为空�?")
-    private String type;
+    @NotBlank(message = "վ��ƴ������ĸ不能为空�?")
+    private String namePy;
 
-    /**
-     * ����ʱ��
-     */
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
-    /**
-     * �޸�ʱ��
-     */
+
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
@@ -57,14 +42,6 @@ public class PassengerSaveReq {
         this.id = id;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
     public String getName() {
         return name;
     }
@@ -73,20 +50,20 @@ public class PassengerSaveReq {
         this.name = name;
     }
 
-    public String getIdCard() {
-        return idCard;
+    public String getNamePinyin() {
+        return namePinyin;
     }
 
-    public void setIdCard(String idCard) {
-        this.idCard = idCard;
+    public void setNamePinyin(String namePinyin) {
+        this.namePinyin = namePinyin;
     }
 
-    public String getType() {
-        return type;
+    public String getNamePy() {
+        return namePy;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNamePy(String namePy) {
+        this.namePy = namePy;
     }
 
     public Date getCreateTime() {
@@ -112,10 +89,9 @@ public class PassengerSaveReq {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", memberId=").append(memberId);
         sb.append(", name=").append(name);
-        sb.append(", idCard=").append(idCard);
-        sb.append(", type=").append(type);
+        sb.append(", namePinyin=").append(namePinyin);
+        sb.append(", namePy=").append(namePy);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
