@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-public class TrainStationQueryResp {
+public class TrainCarriageQueryResp {
 
     /**
      * id
@@ -21,28 +20,16 @@ public class TrainStationQueryResp {
 
     private Integer index;
 
-
-    private String name;
-
-
-    private String namePinyin;
+    private String seatType;
 
 
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date inTime;
-
-    /**
-     * ��վʱ��
-     */
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date outTime;
+    private Integer seatCount;
 
 
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date stopTime;
+    private Integer rowCount;
 
 
-    private BigDecimal km;
+    private Integer colCount;
 
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -76,52 +63,36 @@ public class TrainStationQueryResp {
         this.index = index;
     }
 
-    public String getName() {
-        return name;
+    public String getSeatType() {
+        return seatType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSeatType(String seatType) {
+        this.seatType = seatType;
     }
 
-    public String getNamePinyin() {
-        return namePinyin;
+    public Integer getSeatCount() {
+        return seatCount;
     }
 
-    public void setNamePinyin(String namePinyin) {
-        this.namePinyin = namePinyin;
+    public void setSeatCount(Integer seatCount) {
+        this.seatCount = seatCount;
     }
 
-    public Date getInTime() {
-        return inTime;
+    public Integer getRowCount() {
+        return rowCount;
     }
 
-    public void setInTime(Date inTime) {
-        this.inTime = inTime;
+    public void setRowCount(Integer rowCount) {
+        this.rowCount = rowCount;
     }
 
-    public Date getOutTime() {
-        return outTime;
+    public Integer getColCount() {
+        return colCount;
     }
 
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
-    }
-
-    public Date getStopTime() {
-        return stopTime;
-    }
-
-    public void setStopTime(Date stopTime) {
-        this.stopTime = stopTime;
-    }
-
-    public BigDecimal getKm() {
-        return km;
-    }
-
-    public void setKm(BigDecimal km) {
-        this.km = km;
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -149,12 +120,10 @@ public class TrainStationQueryResp {
         sb.append(", id=").append(id);
         sb.append(", trainCode=").append(trainCode);
         sb.append(", index=").append(index);
-        sb.append(", name=").append(name);
-        sb.append(", namePinyin=").append(namePinyin);
-        sb.append(", inTime=").append(inTime);
-        sb.append(", outTime=").append(outTime);
-        sb.append(", stopTime=").append(stopTime);
-        sb.append(", km=").append(km);
+        sb.append(", seatType=").append(seatType);
+        sb.append(", seatCount=").append(seatCount);
+        sb.append(", rowCount=").append(rowCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");

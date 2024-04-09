@@ -4,10 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
-public class TrainStationSaveReq {
+public class TrainCarriageSaveReq {
 
     /**
      * id
@@ -19,32 +18,25 @@ public class TrainStationSaveReq {
     private String trainCode;
 
 
-    @NotNull(message = "վ��不能为空�?")
+
+    @NotNull(message = "���不能为空�?")
     private Integer index;
 
 
-    @NotBlank(message = "վ��不能为空�?")
-    private String name;
+    @NotBlank(message = "��λ����不能为空�?")
+    private String seatType;
 
 
-    @NotBlank(message = "վ��ƴ��不能为空�?")
-    private String namePinyin;
+    @NotNull(message = "��λ��不能为空�?")
+    private Integer seatCount;
 
 
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date inTime;
+    @NotNull(message = "����不能为空�?")
+    private Integer rowCount;
 
 
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date outTime;
-
-
-    @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    private Date stopTime;
-
-
-    @NotNull(message = "��̣����不能为空�?")
-    private BigDecimal km;
+    @NotNull(message = "����不能为空�?")
+    private Integer colCount;
 
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
@@ -78,52 +70,36 @@ public class TrainStationSaveReq {
         this.index = index;
     }
 
-    public String getName() {
-        return name;
+    public String getSeatType() {
+        return seatType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setSeatType(String seatType) {
+        this.seatType = seatType;
     }
 
-    public String getNamePinyin() {
-        return namePinyin;
+    public Integer getSeatCount() {
+        return seatCount;
     }
 
-    public void setNamePinyin(String namePinyin) {
-        this.namePinyin = namePinyin;
+    public void setSeatCount(Integer seatCount) {
+        this.seatCount = seatCount;
     }
 
-    public Date getInTime() {
-        return inTime;
+    public Integer getRowCount() {
+        return rowCount;
     }
 
-    public void setInTime(Date inTime) {
-        this.inTime = inTime;
+    public void setRowCount(Integer rowCount) {
+        this.rowCount = rowCount;
     }
 
-    public Date getOutTime() {
-        return outTime;
+    public Integer getColCount() {
+        return colCount;
     }
 
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
-    }
-
-    public Date getStopTime() {
-        return stopTime;
-    }
-
-    public void setStopTime(Date stopTime) {
-        this.stopTime = stopTime;
-    }
-
-    public BigDecimal getKm() {
-        return km;
-    }
-
-    public void setKm(BigDecimal km) {
-        this.km = km;
+    public void setColCount(Integer colCount) {
+        this.colCount = colCount;
     }
 
     public Date getCreateTime() {
@@ -151,12 +127,10 @@ public class TrainStationSaveReq {
         sb.append(", id=").append(id);
         sb.append(", trainCode=").append(trainCode);
         sb.append(", index=").append(index);
-        sb.append(", name=").append(name);
-        sb.append(", namePinyin=").append(namePinyin);
-        sb.append(", inTime=").append(inTime);
-        sb.append(", outTime=").append(outTime);
-        sb.append(", stopTime=").append(stopTime);
-        sb.append(", km=").append(km);
+        sb.append(", seatType=").append(seatType);
+        sb.append(", seatCount=").append(seatCount);
+        sb.append(", rowCount=").append(rowCount);
+        sb.append(", colCount=").append(colCount);
         sb.append(", createTime=").append(createTime);
         sb.append(", updateTime=").append(updateTime);
         sb.append("]");
