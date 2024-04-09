@@ -12,7 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("admin/train")
+@RequestMapping("/admin/train")
 public class TrainAdminController {
 
     @Resource
