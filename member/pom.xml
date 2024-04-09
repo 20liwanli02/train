@@ -37,11 +37,20 @@
 
     </dependencies>
 
+<!--    没有
+<configuration>
+    <classifier>exec</classifier>
+</configuration>
+打出来的jar无法被依赖，导致generator依赖时找不到jar
+-->
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <classifier>exec</classifier>
+                </configuration>
             </plugin>
         </plugins>
     </build>
