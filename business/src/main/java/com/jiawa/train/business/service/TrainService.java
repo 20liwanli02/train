@@ -66,4 +66,14 @@ public class TrainService {
     public void delete(Long id){
         trainMapper.deleteByPrimaryKey(id);
     }
+
+    /**
+     * 查询所有车次
+     */
+    public List<TrainQueryResp> queryAll(){
+        TrainExample trainExample = new TrainExample();
+        trainExample.setOrderByClause("id desc");
+        List<Train> trainlist = trainMapper.selectByExample(trainExample);
+        return BeanUtil.copyToList(trainlist, TrainQueryResp.class);
+    }
 }
