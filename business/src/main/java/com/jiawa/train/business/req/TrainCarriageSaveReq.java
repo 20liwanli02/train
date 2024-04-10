@@ -13,36 +13,51 @@ public class TrainCarriageSaveReq {
      */
     private Long id;
 
-
-    @NotBlank(message = "���α��不能为空�?")
+    /**
+     * 车次编号
+     */
+    @NotBlank(message = "【车次编号】不能为空")
     private String trainCode;
 
-
-
-    @NotNull(message = "���不能为空�?")
+    /**
+     * 厢号
+     */
+    @NotNull(message = "【厢号】不能为空")
     private Integer index;
 
-
-    @NotBlank(message = "��λ����不能为空�?")
+    /**
+     * 座位类型|枚举[SeatTypeEnum]
+     */
+    @NotBlank(message = "【座位类型】不能为空")
     private String seatType;
 
-
-    @NotNull(message = "��λ��不能为空�?")
+    /**
+     * 座位数
+     */
+    // @NotNull(message = "【座位数】不能为空")
     private Integer seatCount;
 
-
-    @NotNull(message = "����不能为空�?")
+    /**
+     * 排数
+     */
+    @NotNull(message = "【排数】不能为空")
     private Integer rowCount;
 
-
-    @NotNull(message = "����不能为空�?")
+    /**
+     * 列数
+     */
+    // @NotNull(message = "【列数】不能为空")
     private Integer colCount;
 
-
+    /**
+     * 新增时间
+     */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
-
+    /**
+     * 修改时间
+     */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
