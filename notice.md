@@ -113,3 +113,5 @@ http://localhost:9000/welcome
 36.controller和service可以交叉调用的
 
 37.在哪里注入就在调用哪里的方法
+
+38.类，一个封装用的容器；对象一个具有确定性的类
