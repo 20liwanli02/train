@@ -1,6 +1,7 @@
 package com.jiawa.train.business.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
@@ -12,6 +13,8 @@ import com.jiawa.train.business.mapper.TrainCarriageMapper;
 import com.jiawa.train.business.req.TrainCarriageQueryReq;
 import com.jiawa.train.business.req.TrainCarriageSaveReq;
 import com.jiawa.train.business.resp.TrainCarriageQueryResp;
+import com.jiawa.train.common.exception.BusinessException;
+import com.jiawa.train.common.exception.BusinessExceptionEnum;
 import com.jiawa.train.common.resp.PageResp;
 import com.jiawa.train.common.util.SnowUtil;
 import jakarta.annotation.Resource;
@@ -39,10 +42,10 @@ public class TrainCarriageService {
 
         if(ObjectUtil.isNull(trainCarriage.getId())){
             // 保存之前，先校验唯一键是否存在
-//            TrainCarriage trainCarriageDB = selectByUnique(req.getTrainCode(), req.getIndex());
-//            if (ObjectUtil.isNotEmpty(trainCarriageDB)) {
-//                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_CARRIAGE_INDEX_UNIQUE_ERROR);
-//            }
+            TrainCarriage trainCarriageDB = selectByUnique(req.getTrainCode(), req.getIndex());
+            if (ObjectUtil.isNotEmpty(trainCarriageDB)) {
+                throw new BusinessException(BusinessExceptionEnum.BUSINESS_TRAIN_CARRIAGE_INDEX_UNIQUE_ERROR);
+            }
 
             trainCarriage.setId(SnowUtil.getSnowflakeNextId());
             trainCarriage.setCreateTime(now);
@@ -88,5 +91,18 @@ public class TrainCarriageService {
         TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
         criteria.andTrainCodeEqualTo(trainCode);
         return trainCarriageMapper.selectByExample(trainCarriageExample);
+    }
+
+    private TrainCarriage selectByUnique(String trainCode,Integer index) {
+        TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
+        TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        criteria.andTrainCodeEqualTo(trainCode).andIndexEqualTo(index);
+        List<TrainCarriage> list = trainCarriageMapper.selectByExample(trainCarriageExample);
+        if(CollUtil.isNotEmpty(list)){
+//            throw new BusinessException(BusinessExceptionEnum.BUSINESS_STATION_NAME_UNIQUE_ERROR);
+            return list.get(0);
+        }else{
+            return null;
+        }
     }
 }
