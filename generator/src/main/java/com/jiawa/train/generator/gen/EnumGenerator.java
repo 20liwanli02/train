@@ -6,9 +6,13 @@ import com.jiawa.train.member.enums.PassengerTypeEnum;
 
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-//import java.util.ArrayList;
-//import java.util.List;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class EnumGenerator {
      static String path = "web/src/assets/js/rer/enums.js";
@@ -43,24 +47,25 @@ public class EnumGenerator {
         Method getDesc = clazz.getMethod("getDesc");
         Method getCode = clazz.getMethod("getCode");
 
+
         // 排除枚举属性和$VALUES，只获取code desc等
-//        List<Field> targetFields = new ArrayList<>();
-//        Field[] fields = clazz.getDeclaredFields();
-//        for (Field field : fields) {
-//            if (!Modifier.isPrivate(field.getModifiers()) || "$VALUES".equals(field.getName())) {
-//                continue;
-//            }
-//            targetFields.add(field);
-//        }
+        List<Field> targetFields = new ArrayList<>();
+        Field[] fields = clazz.getDeclaredFields();
+        for (Field field : fields) {
+            if (!Modifier.isPrivate(field.getModifiers()) || "$VALUES".equals(field.getName())) {
+                continue;
+            }
+            targetFields.add(field);
+        }
 
         // 生成对象
         bufferObject.append(enumConst).append("={");
         for (int i = 0; i < objects.length; i++) {
             Object obj = objects[i];
-            bufferObject.append(name.invoke(obj)).append(":{code:\"").append(getCode.invoke(obj)).append("\",desc:\"").append(getDesc.invoke(obj)).append("\"}");
-
+//            bufferObject.append(name.invoke(obj)).append(":{code:\"").append(getCode.invoke(obj)).append("\",desc:\"").append(getDesc.invoke(obj)).append("\"}");
+            bufferObject.append(name.invoke(obj)).append(":");
             // 将一个枚举值转成JSON对象字符串
-//            formatJsonObj(bufferObject, targetFields, clazz, obj);
+            formatJsonObj(bufferObject, targetFields, clazz, obj);
 
             if (i < objects.length - 1) {
                 bufferObject.append(",");
@@ -72,9 +77,9 @@ public class EnumGenerator {
         bufferArray.append(enumConst).append("_ARRAY=[");
         for (int i = 0; i < objects.length; i++) {
             Object obj = objects[i];
-            bufferArray.append("{code:\"").append(getCode.invoke(obj)).append("\",desc:\"").append(getDesc.invoke(obj)).append("\"}");
+//            bufferArray.append("{code:\"").append(getCode.invoke(obj)).append("\",desc:\"").append(getDesc.invoke(obj)).append("\"}");
             // 将一个枚举值转成JSON对象字符串
-//            formatJsonObj(bufferArray, targetFields, clazz, obj);
+            formatJsonObj(bufferArray, targetFields, clazz, obj);
 
             if (i < objects.length - 1) {
                 bufferArray.append(",");
@@ -88,19 +93,19 @@ public class EnumGenerator {
      * 比如：SeatColEnum.YDZ_A("A", "A", "1")
      * 转成：{code:"A",desc:"A",type:"1"}
      */
-//    private static void formatJsonObj(StringBuffer bufferObject, List<Field> targetFields, Class clazz, Object obj) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-//        bufferObject.append("{");
-//        for (int j = 0; j < targetFields.size(); j++) {
-//            Field field = targetFields.get(j);
-//            String fieldName = field.getName();
-//            String getMethod = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-//            bufferObject.append(fieldName).append(":\"").append(clazz.getMethod(getMethod).invoke(obj)).append("\"");
-//            if (j < targetFields.size() - 1) {
-//                bufferObject.append(",");
-//            }
-//        }
-//        bufferObject.append("}");
-//    }
+    private static void formatJsonObj(StringBuffer bufferObject, List<Field> targetFields, Class clazz, Object obj) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        bufferObject.append("{");
+        for (int j = 0; j < targetFields.size(); j++) {
+            Field field = targetFields.get(j);
+            String fieldName = field.getName();
+            String getMethod = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
+            bufferObject.append(fieldName).append(":\"").append(clazz.getMethod(getMethod).invoke(obj)).append("\"");
+            if (j < targetFields.size() - 1) {
+                bufferObject.append(",");
+            }
+        }
+        bufferObject.append("}");
+    }
 
     /**
      * 写文件
