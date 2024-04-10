@@ -39,6 +39,20 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
 
+<!--        定时任务-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
+<!--        跟着做时爆红，自动导入词包
+import org.springframework.scheduling.quartz.SpringBeanJobFactory;
+-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+
     </dependencies>
 
     <!--    没有
