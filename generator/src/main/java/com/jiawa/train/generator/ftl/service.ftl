@@ -52,7 +52,7 @@ public class ${Domain}Service {
         LOG.info("每页条数：{}",req.getSize());
         PageHelper.startPage(req.getPage(),req.getSize());
         List<${Domain}> ${domain}list = ${domain}Mapper.selectByExample(${domain}Example);
-        //类似于生成了一个查询总数的sql语句
+
         PageInfo<${Domain}> pageInfo = new PageInfo<>(${domain}list);
         LOG.info("总行数：{}",pageInfo.getTotal());
         LOG.info("总页数：{}",pageInfo.getPages());

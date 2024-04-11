@@ -9,6 +9,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -77,10 +78,10 @@ public class ServerGenerator {
         System.out.println("组装参数：" + param);
 
         gen(Domain, param, "service", "service");
-        gen(Domain, param, "controller/admin", "adminController");
-        gen(Domain, param, "req", "saveReq");
-        gen(Domain, param, "req", "queryReq");
-        gen(Domain, param, "resp", "queryResp");
+//        gen(Domain, param, "controller/admin", "adminController");
+//        gen(Domain, param, "req", "saveReq");
+//        gen(Domain, param, "req", "queryReq");
+//        gen(Domain, param, "resp", "queryResp");
 //        genVue(do_main, param);
     }
 
@@ -96,9 +97,9 @@ public class ServerGenerator {
 
     private static void genVue(String do_main, Map<String, Object> param) throws IOException, TemplateException {
         FreemarkerUtil.initConfig("vue.ftl");
-//        new File(vuePath + module).mkdirs();
-        String fileName = vuePath  + do_main + ".vue";
-//        String fileName = vuePath + module + "/" + do_main + ".vue";
+        new File(vuePath + module).mkdirs();
+//        String fileName = vuePath  + do_main + ".vue";
+        String fileName = vuePath + module + "/" + do_main + ".vue";
         System.out.println("开始生成：" + fileName);
         FreemarkerUtil.generator(fileName, param);
     }
