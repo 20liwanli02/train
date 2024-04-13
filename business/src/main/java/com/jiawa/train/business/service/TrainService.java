@@ -81,10 +81,14 @@ public class TrainService {
      * 查询所有车次
      */
     public List<TrainQueryResp> queryAll(){
+        List<Train> trainlist = selectAll();
+        return BeanUtil.copyToList(trainlist, TrainQueryResp.class);
+    }
+
+    public List<Train> selectAll() {
         TrainExample trainExample = new TrainExample();
         trainExample.setOrderByClause("code asc");
-        List<Train> trainlist = trainMapper.selectByExample(trainExample);
-        return BeanUtil.copyToList(trainlist, TrainQueryResp.class);
+        return trainMapper.selectByExample(trainExample);
     }
 
     private Train selectByUnique(String Code) {
