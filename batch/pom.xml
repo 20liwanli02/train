@@ -53,6 +53,18 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
             <version>6.0.2</version>
         </dependency>
 
+<!--        微服务的服务间调用的组件-->
+<!--        远程调用openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+<!--        openfeign默认使用的是loadBalance的负载均衡器-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-loadbalancer</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!--    没有
