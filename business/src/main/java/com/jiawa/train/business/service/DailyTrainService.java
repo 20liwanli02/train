@@ -37,6 +37,8 @@ public class DailyTrainService {
     private DailyTrainStationService dailyTrainStationService;
      @Resource
     private DailyTrainCarriageService dailyTrainCarriageService;
+     @Resource
+    private DailyTrainSeatService dailyTrainSeatService;
 
 
     public void save(DailyTrainSaveReq req){
@@ -126,7 +128,7 @@ public class DailyTrainService {
         dailyTrainCarriageService.genDaily(date, train.getCode());
 
         // 生成该车次的座位数据
-//        dailyTrainSeatService.genDaily(date, train.getCode());
+        dailyTrainSeatService.genDaily(date, train.getCode());
 
         // 生成该车次的余票数据
 //        dailyTrainTicketService.genDaily(dailyTrain, date, train.getCode());
