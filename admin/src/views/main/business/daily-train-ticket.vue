@@ -16,6 +16,7 @@
     <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
       </template>
+<!--      增加特殊的列，将多个字段叠在一起摆放，美观且节省地方-->
       <template v-else-if="column.dataIndex === 'station'">
         {{record.start}}<br/>
         {{record.end}}
