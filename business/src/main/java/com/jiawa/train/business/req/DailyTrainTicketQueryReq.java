@@ -19,6 +19,7 @@ public class DailyTrainTicketQueryReq extends PageReq {
      */
     private String trainCode;
 
+    //增加两个查询条件：出发站、到达站
     /**
      * 出发站
      */

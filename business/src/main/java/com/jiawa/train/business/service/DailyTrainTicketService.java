@@ -90,6 +90,7 @@ public class DailyTrainTicketService {
         DailyTrainTicketExample dailyTrainTicketExample = new DailyTrainTicketExample();
         dailyTrainTicketExample.setOrderByClause("`date` desc, start_time asc, train_code asc, `start_index` asc, `end_index` asc");
         DailyTrainTicketExample.Criteria criteria = dailyTrainTicketExample.createCriteria();
+        //增加查询的条件
         if (ObjUtil.isNotNull(req.getDate())) {
             criteria.andDateEqualTo(req.getDate());
         }
