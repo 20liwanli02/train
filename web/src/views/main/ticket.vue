@@ -15,6 +15,7 @@
            :loading="loading">
     <template #bodyCell="{ column, record }">
       <template v-if="column.dataIndex === 'operation'">
+        <a-button type="primary" @click="toOrder(record)">预定</a-button>
       </template>
 <!--      增加特殊的列，将多个字段叠在一起摆放，美观且节省地方-->
       <template v-else-if="column.dataIndex === 'station'">
@@ -81,6 +82,7 @@ import axios from "axios";
 // import TrainSelectView from "@/components/train-select";
 import StationSelectView from "@/components/station-select";
 import dayjs from "dayjs";
+import router from "@/router";
 
 export default defineComponent({
   name: "ticket-view",
@@ -162,7 +164,18 @@ export default defineComponent({
       dataIndex: 'yw',
       key: 'yw',
     },
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      // key: 'operation',
+    },
     ];
+
+    const toOrder = (record) => {
+      dailyTrainTicket.value = Tool.copy(record);
+      SessionStorage.set("dailyTrainTicket", dailyTrainTicket.value);
+      router.push("/order")
+    }
 
 
     const handleQuery = (param) => {
@@ -239,7 +252,8 @@ export default defineComponent({
       handleQuery,
       loading,
       params,
-      calDuration
+      calDuration,
+      toOrder
     };
   },
 });
