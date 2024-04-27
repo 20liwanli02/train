@@ -2,6 +2,7 @@ package com.jiawa.train.business.req;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -9,9 +10,7 @@ import java.util.List;
 
 public class ConfirmOrderDoReq {
 
-    @NotNull(message = "��Աid不能为空�?")
     private Long memberId;
-
 
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     @NotNull(message = "����不能为空�?")
@@ -34,7 +33,7 @@ public class ConfirmOrderDoReq {
     private Long dailyTrainTicketId;
 
 
-    @NotBlank(message = "��Ʊ不能为空�?")
+    @NotEmpty(message = "��Ʊ不能为空�?")
     private List<ConfirmOrderTicketReq> tickets;
 
     public Long getMemberId() {
