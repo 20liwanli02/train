@@ -5,14 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
+import java.util.List;
 
-public class ConfirmOrderSaveReq {
-
-    /**
-     * id
-     */
-    private Long id;
-
+public class ConfirmOrderDoReq {
 
     @NotNull(message = "��Աid不能为空�?")
     private Long memberId;
@@ -40,27 +35,7 @@ public class ConfirmOrderSaveReq {
 
 
     @NotBlank(message = "��Ʊ不能为空�?")
-    private String tickets;
-
-
-    @NotBlank(message = "����״̬不能为空�?")
-    private String status;
-
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date createTime;
-
-
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    private Date updateTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private List<ConfirmOrderTicketReq> tickets;
 
     public Long getMemberId() {
         return memberId;
@@ -110,56 +85,25 @@ public class ConfirmOrderSaveReq {
         this.dailyTrainTicketId = dailyTrainTicketId;
     }
 
-    public String getTickets() {
+    public List<ConfirmOrderTicketReq> getTickets() {
         return tickets;
     }
 
-    public void setTickets(String tickets) {
+    public void setTickets(List<ConfirmOrderTicketReq> tickets) {
         this.tickets = tickets;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", memberId=").append(memberId);
+        final StringBuffer sb = new StringBuffer("ConfirmOrderDoReq{");
+        sb.append("memberId=").append(memberId);
         sb.append(", date=").append(date);
-        sb.append(", trainCode=").append(trainCode);
-        sb.append(", start=").append(start);
-        sb.append(", end=").append(end);
+        sb.append(", trainCode='").append(trainCode).append('\'');
+        sb.append(", start='").append(start).append('\'');
+        sb.append(", end='").append(end).append('\'');
         sb.append(", dailyTrainTicketId=").append(dailyTrainTicketId);
         sb.append(", tickets=").append(tickets);
-        sb.append(", status=").append(status);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
+        sb.append('}');
         return sb.toString();
     }
 }
