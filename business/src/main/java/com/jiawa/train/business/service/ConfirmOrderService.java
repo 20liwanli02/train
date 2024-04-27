@@ -3,8 +3,11 @@ package com.jiawa.train.business.service;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.ObjectUtil;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.jiawa.train.business.enums.ConfirmOrderStatusEnum;
+import com.jiawa.train.common.context.LoginMemberContext;
 import com.jiawa.train.common.resp.PageResp;
 import com.jiawa.train.common.util.SnowUtil;
 import com.jiawa.train.business.domain.ConfirmOrder;
@@ -68,6 +71,20 @@ public class ConfirmOrderService {
     }
 
     public void doConfirm(ConfirmOrderDoReq req){
-
+        //保存确认订单表，状态初始化
+        DateTime now = DateTime.now();
+        ConfirmOrder confirmOrder = new ConfirmOrder();
+        confirmOrder.setId(SnowUtil.getSnowflakeNextId());
+        confirmOrder.setCreateTime(now);
+        confirmOrder.setUpdateTime(now);
+        confirmOrder.setMemberId(LoginMemberContext.getId());
+        confirmOrder.setDate(req.getDate());
+        confirmOrder.setTrainCode(req.getTrainCode());
+        confirmOrder.setStart(req.getStart());
+        confirmOrder.setEnd(req.getEnd());
+        confirmOrder.setDailyTrainTicketId(req.getDailyTrainTicketId());
+        confirmOrder.setStatus(ConfirmOrderStatusEnum.INIT.getCode());
+        confirmOrder.setTickets(JSON.toJSONString(req.getTickets()));
+        confirmOrderMapper.insert(confirmOrder);
     }
 }
