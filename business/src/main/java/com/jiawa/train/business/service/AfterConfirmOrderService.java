@@ -1,8 +1,11 @@
 package com.jiawa.train.business.service;
 
+import com.jiawa.train.business.domain.ConfirmOrder;
 import com.jiawa.train.business.domain.DailyTrainSeat;
 import com.jiawa.train.business.domain.DailyTrainTicket;
+import com.jiawa.train.business.enums.ConfirmOrderStatusEnum;
 import com.jiawa.train.business.feign.MemberFeign;
+import com.jiawa.train.business.mapper.ConfirmOrderMapper;
 import com.jiawa.train.business.mapper.DailyTrainSeatMapper;
 import com.jiawa.train.business.mapper.cust.DailyTrainTicketMapperCust;
 import com.jiawa.train.business.req.ConfirmOrderTicketReq;
@@ -28,9 +31,11 @@ public class AfterConfirmOrderService {
      private DailyTrainTicketMapperCust dailyTrainTicketMapperCust;
     @Resource
     private MemberFeign memberFeign;
+    @Resource
+    private ConfirmOrderMapper confirmOrderMapper;
 
      @Transactional
-    public void AfterDoConfirm(DailyTrainTicket dailyTrainTicket, List<DailyTrainSeat> finalSeatList, List<ConfirmOrderTicketReq> tickets){
+    public void AfterDoConfirm(DailyTrainTicket dailyTrainTicket, List<DailyTrainSeat> finalSeatList, List<ConfirmOrderTicketReq> tickets, ConfirmOrder confirmOrder){
          for (int j = 0, finalSeatListSize = finalSeatList.size(); j < finalSeatListSize; j++) {
              DailyTrainSeat dailyTrainSeat = finalSeatList.get(j);
              DailyTrainSeat seatForUpdate = new DailyTrainSeat();
@@ -88,6 +93,13 @@ public class AfterConfirmOrderService {
              memberTicketReq.setSeatType(dailyTrainSeat.getSeatType());
              CommonResp<Object> commonResp = memberFeign.save(memberTicketReq);
              LOG.info("调用member接口，返回：{}", commonResp);
+
+             // 更新订单状态为成功
+             ConfirmOrder confirmOrderForUpdate = new ConfirmOrder();
+             confirmOrderForUpdate.setId(confirmOrder.getId());
+             confirmOrderForUpdate.setUpdateTime(new Date());
+             confirmOrderForUpdate.setStatus(ConfirmOrderStatusEnum.SUCCESS.getCode());
+             confirmOrderMapper.updateByPrimaryKeySelective(confirmOrderForUpdate);
          }
     }
 }
