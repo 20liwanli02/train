@@ -177,7 +177,7 @@ public class ConfirmOrderService {
         LOG.info("最终的选座：{}", finalSeatList);
 
         //选中座位后进行事物处理
-        afterConfirmOrderService.AfterDoConfirm(dailyTrainTicket, finalSeatList);
+        afterConfirmOrderService.AfterDoConfirm(dailyTrainTicket, finalSeatList, tickets);
 
     }
 

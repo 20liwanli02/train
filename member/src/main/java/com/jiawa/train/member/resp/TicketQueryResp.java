@@ -15,83 +15,83 @@ public class TicketQueryResp {
     private Long id;
 
     /**
-     * »áÔ±id
+     * ä¼šå‘˜id
      */
     @JsonSerialize(using= ToStringSerializer.class)
     private Long memberId;
 
     /**
-     * ³Ë¿Íid
+     * ä¹˜å®¢id
      */
     @JsonSerialize(using= ToStringSerializer.class)
     private Long passengerId;
 
     /**
-     * ³Ë¿ÍĞÕÃû
+     * ä¹˜å®¢å§“å
      */
     private String passengerName;
 
     /**
-     * ÈÕÆÚ
+     * æ—¥æœŸ
      */
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date trainDate;
 
     /**
-     * ³µ´Î±àºÅ
+     * è½¦æ¬¡ç¼–å·
      */
     private String trainCode;
 
     /**
-     * ÏäĞò
+     * ç®±åº
      */
     private Integer carriageIndex;
 
     /**
-     * ÅÅºÅ|01, 02
+     * æ’å·|01, 02
      */
     private String seatRow;
 
     /**
-     * ÁĞºÅ|Ã¶¾Ù[SeatColEnum]
+     * åˆ—å·|æšä¸¾[SeatColEnum]
      */
     private String seatCol;
 
     /**
-     * ³ö·¢Õ¾
+     * å‡ºå‘ç«™
      */
     private String startStation;
 
     /**
-     * ³ö·¢Ê±¼ä
+     * å‡ºå‘æ—¶é—´
      */
     @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
     private Date startTime;
 
     /**
-     * µ½´ïÕ¾
+     * åˆ°è¾¾ç«™
      */
     private String endStation;
 
     /**
-     * µ½Õ¾Ê±¼ä
+     * åˆ°ç«™æ—¶é—´
      */
     @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
     private Date endTime;
 
     /**
-     * ×ùÎ»ÀàĞÍ|Ã¶¾Ù[SeatTypeEnum]
+     * åº§ä½ç±»å‹|æšä¸¾[SeatTypeEnum]
      */
     private String seatType;
 
     /**
-     * ĞÂÔöÊ±¼ä
+     * æ–°å¢æ—¶é—´
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     /**
-     * ĞŞ¸ÄÊ±¼ä
+     * ä¿®æ”¹æ—¶é—´
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;

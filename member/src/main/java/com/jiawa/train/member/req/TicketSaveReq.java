@@ -8,100 +8,52 @@ import java.util.Date;
 
 public class TicketSaveReq {
 
-    /**
-     * id
-     */
     private Long id;
 
-    /**
-     * »áÔ±id
-     */
-    @NotNull(message = "»áÔ±idä¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½ï¿½Ô±idä¸èƒ½ä¸ºç©ºï¿½?")
     private Long memberId;
 
-    /**
-     * ³Ë¿Íid
-     */
-    @NotNull(message = "³Ë¿Íidä¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½Ë¿ï¿½idä¸èƒ½ä¸ºç©ºï¿½?")
     private Long passengerId;
 
-    /**
-     * ³Ë¿ÍĞÕÃû
-     */
     private String passengerName;
 
-    /**
-     * ÈÕÆÚ
-     */
     @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
-    @NotNull(message = "ÈÕÆÚä¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½ï¿½ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private Date trainDate;
 
-    /**
-     * ³µ´Î±àºÅ
-     */
-    @NotBlank(message = "³µ´Î±àºÅä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½ï¿½ï¿½Î±ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private String trainCode;
 
-    /**
-     * ÏäĞò
-     */
-    @NotNull(message = "ÏäĞòä¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½ï¿½ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private Integer carriageIndex;
 
-    /**
-     * ÅÅºÅ|01, 02
-     */
-    @NotBlank(message = "ÅÅºÅä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½Åºï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private String seatRow;
 
-    /**
-     * ÁĞºÅ|Ã¶¾Ù[SeatColEnum]
-     */
-    @NotBlank(message = "ÁĞºÅä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½Ğºï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private String seatCol;
 
-    /**
-     * ³ö·¢Õ¾
-     */
-    @NotBlank(message = "³ö·¢Õ¾ä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½ï¿½ï¿½ï¿½Õ¾ä¸èƒ½ä¸ºç©ºï¿½?")
     private String startStation;
 
-    /**
-     * ³ö·¢Ê±¼ä
-     */
     @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    @NotNull(message = "³ö·¢Ê±¼ää¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private Date startTime;
 
-    /**
-     * µ½´ïÕ¾
-     */
-    @NotBlank(message = "µ½´ïÕ¾ä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½ï¿½ï¿½ï¿½Õ¾ä¸èƒ½ä¸ºç©ºï¿½?")
     private String endStation;
 
-    /**
-     * µ½Õ¾Ê±¼ä
-     */
     @JsonFormat(pattern = "HH:mm:ss",timezone = "GMT+8")
-    @NotNull(message = "µ½Õ¾Ê±¼ää¸èƒ½ä¸ºç©ºï¼?")
+    @NotNull(message = "ï¿½ï¿½Õ¾Ê±ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private Date endTime;
 
-    /**
-     * ×ùÎ»ÀàĞÍ|Ã¶¾Ù[SeatTypeEnum]
-     */
-    @NotBlank(message = "×ùÎ»ÀàĞÍä¸èƒ½ä¸ºç©ºï¼?")
+    @NotBlank(message = "ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ä¸èƒ½ä¸ºç©ºï¿½?")
     private String seatType;
 
-    /**
-     * ĞÂÔöÊ±¼ä
-     */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
-    /**
-     * ĞŞ¸ÄÊ±¼ä
-     */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date updateTime;
 
