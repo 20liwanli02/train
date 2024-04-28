@@ -46,6 +46,8 @@ public class ConfirmOrderService {
      private DailyTrainCarriageService dailyTrainCarriageService;
      @Resource
      private DailyTrainSeatService dailyTrainSeatService;
+     @Resource
+     private AfterConfirmOrderService afterConfirmOrderService;
 
     public void save(ConfirmOrderDoReq req){
         DateTime now = DateTime.now();
@@ -173,6 +175,11 @@ public class ConfirmOrderService {
             }
         }
         LOG.info("最终的选座：{}", finalSeatList);
+
+        //选中座位后进行事物处理
+        afterConfirmOrderService.AfterDoConfirm(finalSeatList);
+
+
     }
 
     private void getSeat(List<DailyTrainSeat> finalSeatList, Date date,String trainCode,String seatType,String column,List<Integer> offsetList, Integer startIndex, Integer endIndex){
