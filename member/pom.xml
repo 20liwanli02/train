@@ -35,14 +35,31 @@
             <scope>test</scope>
         </dependency>
 
-    </dependencies>
+        <!-- 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <!-- 注册中心 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
-<!--    没有
-<configuration>
-    <classifier>exec</classifier>
-</configuration>
-打出来的jar无法被依赖，导致generator依赖时找不到jar
--->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+
+        </dependencies>
+
+    <!--    没有
+    <configuration>
+        <classifier>exec</classifier>
+    </configuration>
+    打出来的jar无法被依赖，导致generator依赖时找不到jar
+    -->
     <build>
         <plugins>
             <plugin>
