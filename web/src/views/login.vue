@@ -25,16 +25,20 @@
               <a @click="sendCode">获取验证码</a>
             </template>
           </a-input>
-          <!--<a-input v-model:value="loginForm.code" placeholder="验证码"/>-->
         </a-form-item>
 
-        <a-form-item>
-          <a-button type="primary" block @click="login">登录</a-button>
+        <a-form-item :wrapper-col="{ span: 14, offset: 7 }">
+<!--          <a-button type="primary" block @click="login">登录</a-button>-->
+          <a-button type="primary" @click="login">登录</a-button>
+<!--          <a-button type="primary" @click="login" style="margin-left: 180px">登录</a-button>-->
+          <a-button style="margin-left: 20px" @click="register">注册</a-button>
         </a-form-item>
 
       </a-form>
     </a-col>
   </a-row>
+
+
 </template>
 
 <script>
@@ -62,7 +66,8 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({ description: '发送验证码成功！' });
-          loginForm.code = "8888";
+          // loginForm.code = "8888";
+          console.log(data.content);
         } else {
           notification.error({ description: data.message });
         }
@@ -78,6 +83,20 @@ export default defineComponent({
           // 登录成功，跳到控台主页
           router.push("/welcome");
           store.commit("setMember", data.content);
+          console.log(data.content);
+        } else {
+          notification.error({ description: data.message });
+        }
+      })
+    };
+
+    const register = () => {
+      axios.post("/member/member/register", loginForm).then((response) => {
+        let data = response.data;
+        if (data.success) {
+          notification.success({ description: '注册成功！' });
+          console.log(data.content);
+          // store.commit("setMember", data.content);
         } else {
           notification.error({ description: data.message });
         }
@@ -88,6 +107,7 @@ export default defineComponent({
       loginForm,
       sendCode,
       login,
+      register
     };
 
   },

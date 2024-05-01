@@ -33,23 +33,12 @@ public class MemberController {
      * Valid：参数校验，犹如开关，加上后校验打开
      */
     @PostMapping("/register")
-    public CommonResp<Long> register(@Valid MemberRegisterReq req){
+    public CommonResp<Long> register(@Valid @RequestBody MemberRegisterReq req){
         long register = memberService.register(req);
         CommonResp<Long> commonResp = new CommonResp<>();
         commonResp.setContent(register);
         return commonResp;
     }
-
-    /**
-     *生成短信验证码
-     * RequestBody：接收json类型的参数
-     */
-    @PostMapping("/sendcode")
-    public CommonResp<Long> sendcode(@Valid @RequestBody MemberSendCodeReq req){
-        memberService.sendCode(req);
-        return new CommonResp<>();
-    }
-
 
     /**
      *登录功能
@@ -58,5 +47,17 @@ public class MemberController {
     public CommonResp<MemberLoginResp> login(@Valid @RequestBody MemberLoginReq req){
         MemberLoginResp resp = memberService.login(req);
         return new CommonResp<MemberLoginResp>(resp);
+    }
+
+    /**
+     *生成短信验证码
+     * RequestBody：接收json类型的参数
+     */
+    @PostMapping("/sendcode")
+    public CommonResp<String> sendcode(@Valid @RequestBody MemberSendCodeReq req){
+        String code = memberService.sendCode(req);
+        CommonResp<String> commonResp = new CommonResp<>();
+        commonResp.setContent(code);
+        return commonResp;
     }
 }

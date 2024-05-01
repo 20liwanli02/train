@@ -10,6 +10,7 @@ public class MemberLoginResp {
 
     private String token;
 
+
     public String getToken() {
         return token;
     }
