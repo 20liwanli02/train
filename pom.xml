@@ -77,7 +77,7 @@
                 <version>5.8.1</version>
             </dependency>
 
-<!--分页展示-->
+            <!--分页展示-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -91,7 +91,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 

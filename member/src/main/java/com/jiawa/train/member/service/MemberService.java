@@ -118,8 +118,6 @@ public class MemberService {
         if(!"8888".equals(code)){
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
-
-        //
 //        MemberLoginResp memberLoginResp = new MemberLoginResp();
 //        memberLoginResp.setId();
 //        memberLoginResp.setMobile();

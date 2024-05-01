@@ -123,3 +123,8 @@ http://localhost:9000/welcome
 41.数据库删除座位，票数竟然不变，重新生成才会变化
 
 42.nacos的读bootstrap的依赖时就近原则的读！！！
+
+43.Some problems were encountered while building the effective model for com.jiawa:member:jar:0.0.1-SNAPSHOT
+The expression ${artifactId} is deprecated. Please use ${project.artifactId} instead.
+It is highly recommended to fix these problems because they threaten the stability of your build.
+For this reason, future Maven versions might no longer support building such malformed projects.
