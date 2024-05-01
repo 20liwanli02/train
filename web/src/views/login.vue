@@ -1,4 +1,23 @@
 <template>
+<!--  <div class="header">-->
+<!--    <div class="wrapper">-->
+<!--      <div class="header-con">-->
+<!--        <h1 class="logo">-->
+<!--          <a href="http://10.157.75.165:9000/login">铁路12306</a>-->
+<!--        </h1>-->
+<!--        <span class="header-welcome">-->
+<!--        欢迎登录12306-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+  <ul class="header-welcome">
+    <li class="one"><a href="http://10.157.75.165:9000/login" style="color: black">铁路12306</a></li>
+    <li class="we">欢迎登录12306</li>
+  </ul>
+
+
+
   <a-row class="login">
     <a-col :span="8" :offset="8" class="login-main">
       <h1 style="text-align: center"><rocket-two-tone />&nbsp;12306售票系统</h1>
@@ -27,11 +46,12 @@
           </a-input>
         </a-form-item>
 
-        <a-form-item :wrapper-col="{ span: 14, offset: 7 }">
+        <a-form-item :wrapper-col="{ span: 14, offset: 7}">
 <!--          <a-button type="primary" block @click="login">登录</a-button>-->
           <a-button type="primary" @click="login">登录</a-button>
 <!--          <a-button type="primary" @click="login" style="margin-left: 180px">登录</a-button>-->
-          <a-button style="margin-left: 20px" @click="register">注册</a-button>
+          <a-button style="margin-left: 43px" @click="register">注册</a-button>
+<!--          <span style="margin-left: 20px">Forgot your</span>-->
         </a-form-item>
 
       </a-form>
@@ -126,4 +146,47 @@ export default defineComponent({
   border-radius: 10px;
   background-color: #fcfcfc;
 }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  /*background-color: #f3f3f3;*/
+  background-color: white;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  /*background-color: #ddd;*/
+  background-color: white;
+}
+
+li a.active {
+  color: white;
+  /*background-color: #4CAF50;*/
+  background-color: white;
+}
+
+ul li.we {
+  padding-top: 28px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+
+.header-welcome .one {
+  font-size: 35px;
+}
+
 </style>
