@@ -46,6 +46,7 @@ public class MemberService {
     public long register(MemberRegisterReq req){
         //将封装类中的属性拿出来，转为String类型
         String mobile = req.getMobile();
+        String codeReq = req.getCode();
 
         //查询数据库中是否已经存在mobile
         Member memberDB = selectByMobile(mobile);
@@ -54,6 +55,11 @@ public class MemberService {
             //返回的是一个数组，一条用户记录
 //            return list.get(0).getId();
             throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_EXIST);
+        }
+
+        //校验短信验证码
+        if(!CODE.equals(codeReq)){
+            throw new BusinessException(BusinessExceptionEnum.MEMBER_MOBILE_CODE_ERROR);
         }
 
         //封装插入用户记录
@@ -65,42 +71,6 @@ public class MemberService {
         memberMapper.insert(member);
         return member.getId();
     }
-
-    /**
-     *生成短信验证码
-     */
-//    public void sendCode(MemberSendCodeReq req){
-        //将封装类中的属性拿出来，转为String类型
-//        String mobile = req.getMobile();
-
-        //查询数据库中是否已经存在mobile
-//        Member memberDB = selectByMobile(mobile);
-
-//        if(ObjectUtil.isNull(memberDB)){
-//            LOG.info("手机号不存在，插入一条数据！");
-//            //封装插入用户记录
-//            Member member = new Member();
-//            //雪花算法
-//            member.setId(SnowUtil.getSnowflakeNextId());
-//            member.setMobile(mobile);
-//            //Member record：传入一个member的对象
-//            memberMapper.insert(member);
-//        }else{
-//            LOG.info("手机号已存在，不插入数据！");
-//        }
-
-        //生成验证码
-//        String code = RandomUtil.randomString(4);
-//        String code = "8888";
-//        LOG.info("生成短信验证码：{}",code);
-//
-//
-//        //保存短信记录表：手机号，短信验证码，有效期，是否已使用，业务类型，发送时间，使用时间
-//        LOG.info("保存短信记录表！");
-//
-//        //对接短信通道，发送通道
-//        LOG.info("对接短信通道！");
-//    }
 
     /**
      *生成短信验证码
@@ -158,4 +128,44 @@ public class MemberService {
             return list.get(0);
         }
     }
+
+
+
+
+    /**
+     *生成短信验证码
+     */
+//    public void sendCode(MemberSendCodeReq req){
+    //将封装类中的属性拿出来，转为String类型
+//        String mobile = req.getMobile();
+
+    //查询数据库中是否已经存在mobile
+//        Member memberDB = selectByMobile(mobile);
+
+//        if(ObjectUtil.isNull(memberDB)){
+//            LOG.info("手机号不存在，插入一条数据！");
+//            //封装插入用户记录
+//            Member member = new Member();
+//            //雪花算法
+//            member.setId(SnowUtil.getSnowflakeNextId());
+//            member.setMobile(mobile);
+//            //Member record：传入一个member的对象
+//            memberMapper.insert(member);
+//        }else{
+//            LOG.info("手机号已存在，不插入数据！");
+//        }
+
+    //生成验证码
+//        String code = RandomUtil.randomString(4);
+//        String code = "8888";
+//        LOG.info("生成短信验证码：{}",code);
+//
+//
+//        //保存短信记录表：手机号，短信验证码，有效期，是否已使用，业务类型，发送时间，使用时间
+//        LOG.info("保存短信记录表！");
+//
+//        //对接短信通道，发送通道
+//        LOG.info("对接短信通道！");
+//    }
+
 }
