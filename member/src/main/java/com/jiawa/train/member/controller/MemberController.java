@@ -4,6 +4,7 @@ import com.jiawa.train.common.resp.CommonResp;
 import com.jiawa.train.member.req.MemberLoginReq;
 import com.jiawa.train.member.req.MemberRegisterReq;
 import com.jiawa.train.member.req.MemberSendCodeReq;
+import com.jiawa.train.member.resp.LoginCodeResp;
 import com.jiawa.train.member.resp.MemberLoginResp;
 import com.jiawa.train.member.service.MemberService;
 import jakarta.annotation.Resource;
@@ -54,10 +55,11 @@ public class MemberController {
      * RequestBody：接收json类型的参数
      */
     @PostMapping("/sendcode")
-    public CommonResp<String> sendcode(@Valid @RequestBody MemberSendCodeReq req){
-        String code = memberService.sendCode(req);
-        CommonResp<String> commonResp = new CommonResp<>();
-        commonResp.setContent(code);
-        return commonResp;
+    public CommonResp<LoginCodeResp> sendcode(@Valid @RequestBody MemberSendCodeReq req){
+        LoginCodeResp resp = memberService.sendCode(req);
+//        CommonResp<String> commonResp = new CommonResp<>();
+//        commonResp.setContent(loginCodeResp);
+//        return commonResp;
+        return new CommonResp<LoginCodeResp>(resp);
     }
 }
