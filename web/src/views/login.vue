@@ -11,10 +11,10 @@
 <!--      </div>-->
 <!--    </div>-->
 <!--    </div>-->
-  <ul class="header-welcome">
-    <li class="one"><a href="http://10.157.75.165:9000/login" style="color: black">铁路12306</a></li>
-    <li class="we">欢迎登录12306</li>
-  </ul>
+<!--  <ul class="header-welcome">-->
+<!--    <li class="one"><a href="http://10.157.75.165:9000/login" style="color: black">铁路12306</a></li>-->
+<!--    <li class="we">欢迎登录12306</li>-->
+<!--  </ul>-->
 
 
 
@@ -77,6 +77,7 @@ export default defineComponent({
     const loginForm = reactive({
       mobile: '13000000001',
       code: '',
+      keyRedis: '',
     });
 
     const sendCode = () => {
@@ -86,8 +87,9 @@ export default defineComponent({
         let data = response.data;
         if (data.success) {
           notification.success({ description: '发送验证码成功！' });
-          loginForm.code = data.content;
-          console.log(data.content);
+          loginForm.code = data.content.code;
+          loginForm.keyRedis = data.content.key;
+          console.log("发送验证码返回结果：", data.content);
         } else {
           notification.error({ description: data.message });
         }
@@ -146,47 +148,47 @@ export default defineComponent({
   border-radius: 10px;
   background-color: #fcfcfc;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  border: 1px solid #e7e7e7;
-  /*background-color: #f3f3f3;*/
-  background-color: white;
-}
+/*ul {*/
+/*  list-style-type: none;*/
+/*  margin: 0;*/
+/*  padding: 0;*/
+/*  overflow: hidden;*/
+/*  border: 1px solid #e7e7e7;*/
+/*  !*background-color: #f3f3f3;*!*/
+/*  background-color: white;*/
+/*}*/
 
-li {
-  float: left;
-}
+/*li {*/
+/*  float: left;*/
+/*}*/
 
-li a {
-  display: block;
-  color: #666;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
+/*li a {*/
+/*  display: block;*/
+/*  color: #666;*/
+/*  text-align: center;*/
+/*  padding: 14px 16px;*/
+/*  text-decoration: none;*/
+/*}*/
 
-li a:hover:not(.active) {
-  /*background-color: #ddd;*/
-  background-color: white;
-}
+/*li a:hover:not(.active) {*/
+/*  !*background-color: #ddd;*!*/
+/*  background-color: white;*/
+/*}*/
 
-li a.active {
-  color: white;
-  /*background-color: #4CAF50;*/
-  background-color: white;
-}
+/*li a.active {*/
+/*  color: white;*/
+/*  !*background-color: #4CAF50;*!*/
+/*  background-color: white;*/
+/*}*/
 
-ul li.we {
-  padding-top: 28px;
-  padding-left: 20px;
-  font-size: 20px;
-}
+/*ul li.we {*/
+/*  padding-top: 28px;*/
+/*  padding-left: 20px;*/
+/*  font-size: 20px;*/
+/*}*/
 
-.header-welcome .one {
-  font-size: 35px;
-}
+/*.header-welcome .one {*/
+/*  font-size: 35px;*/
+/*}*/
 
 </style>
