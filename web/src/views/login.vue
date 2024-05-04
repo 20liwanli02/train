@@ -21,13 +21,14 @@
             name="code"
             :rules="[{ required: true, message: '请输入验证码!' }]"
         >
-          <a-input v-model:value="loginForm.code" placeholder="code">
-            <template #addonAfter>
-              <a @click="sendCode">获取验证码</a>
-            </template>
+          <a-input  v-model:value="loginForm.code" placeholder="code">
+          <template #addonAfter>
+          <a @click="sendCode" :aria-disabled="true" style="margin-left: 10px">
+            {{ btnCodeText.text }}
+          </a>
+          </template>
           </a-input>
         </a-form-item>
-
         <a-form-item :wrapper-col="{ span: 14, offset: 7}">
 <!--          <a-button type="primary" block @click="login">登录</a-button>-->
           <a-button type="primary" @click="login">登录</a-button>
@@ -35,7 +36,6 @@
           <a-button style="margin-left: 43px" @click="register">注册</a-button>
 <!--          <span style="margin-left: 20px">Forgot your</span>-->
         </a-form-item>
-
       </a-form>
     </a-col>
   </a-row>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import axios from 'axios';
 //导入通知组件
 import { notification } from 'ant-design-vue';
@@ -61,7 +61,32 @@ export default defineComponent({
       keyRedis: '',
     });
 
+    const btnCodeText = ref({
+      text: '获取验证码',
+      time: 60,
+      disable: false,
+      clock: null
+    });
+
+    const btnCodeReset = () => {
+      clearInterval(btnCodeText.value.clock);
+      btnCodeText.value.text = '获取验证码';
+      btnCodeText.value.time = 60;
+      btnCodeText.value.disable = false;
+    }
+
     const sendCode = () => {
+      btnCodeText.value.clock = setInterval(() => {
+        if(btnCodeText.value.time === 1){
+          btnCodeReset();
+        }else{
+          btnCodeText.value.disable = true;
+          // 不用--，可能会出现减的过快的情况
+          btnCodeText.value.time = btnCodeText.value.time - 1;
+          btnCodeText.value.text = btnCodeText.value.time + '秒重新获取';
+        }
+      },1000)
+
       axios.post("/member/member/sendcode", {
         mobile: loginForm.mobile
       }).then(response => {
@@ -110,7 +135,8 @@ export default defineComponent({
       loginForm,
       sendCode,
       login,
-      register
+      register,
+      btnCodeText
     };
 
   },
