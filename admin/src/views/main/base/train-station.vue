@@ -1,7 +1,7 @@
 <template>
   <p>
     <a-space>
-      <train-select-view v-model="params.trainCode" width="200px"></train-select-view>
+      <train-select-view v-model="trainCodeParams.trainCode" width="200px"></train-select-view>
       <a-button type="primary" @click="handleQuery()">查找</a-button>
       <a-button type="primary" @click="onAdd">新增</a-button>
     </a-space>
@@ -92,9 +92,10 @@ export default defineComponent({
       pageSize: 10,
     });
     let loading = ref(false);
-    let params = ref({
-      trainCode: null
-    });
+    const trainCodeParams = ref();
+    trainCodeParams.value = {
+      trainCode: undefined,
+    };
     const columns = [
     {
       title: '车次编号',
@@ -202,6 +203,7 @@ export default defineComponent({
       });
     };
 
+    console.log('params.value.trainCode123:', trainCodeParams.value.trainCode);
     const handleQuery = (param) => {
       if (!param) {
         param = {
@@ -209,12 +211,13 @@ export default defineComponent({
           size: pagination.value.pageSize
         };
       }
+      console.log('params.value.trainCode567:', trainCodeParams.value.trainCode);
       loading.value = true;
       axios.get("/business/admin/train-station/query-list", {
         params: {
           page: param.page,
           size: param.size,
-          trainCode: params.value.trainCode
+          trainCode: trainCodeParams.value.trainCode
         }
       }).then((response) => {
         loading.value = false;
@@ -258,7 +261,7 @@ export default defineComponent({
       handleOk,
       onEdit,
       onDelete,
-      params
+      trainCodeParams
     };
   },
 });
