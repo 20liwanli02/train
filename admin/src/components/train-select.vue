@@ -29,7 +29,7 @@ export default defineComponent({
 
     // 利用watch，动态获取父组件的值，如果放在onMounted或其它方法里，则只有第一次有效
     watch(() => props.modelValue, ()=>{
-      console.log("props.modelValue", props.modelValue);
+      console.log("props.modelValue123", props.modelValue);
       trainCode.value = props.modelValue;
     }, {immediate: true});
 
