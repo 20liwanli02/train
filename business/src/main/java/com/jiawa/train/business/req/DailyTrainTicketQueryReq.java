@@ -62,6 +62,8 @@ public class DailyTrainTicketQueryReq extends PageReq {
         this.end = end;
     }
 
+    // 内置缓存的key和equals和hashCode方法有关
+    // 包括本类和父类的属性，否则查询其他页也会从缓存中获取
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -69,6 +71,7 @@ public class DailyTrainTicketQueryReq extends PageReq {
         return Objects.equals(date, that.date) && Objects.equals(trainCode, that.trainCode) && Objects.equals(start, that.start) && Objects.equals(end, that.end) && Objects.equals(((DailyTrainTicketQueryReq) o).getPage(), that.getPage()) && Objects.equals(((DailyTrainTicketQueryReq) o).getSize(), that.getSize());
     }
 
+    // 内置缓存
     @Override
     public int hashCode() {
         return Objects.hash(date, trainCode, start, end, getPage(), getSize());

@@ -1,0 +1,4 @@
+GET http://localhost:8000/business/admin/daily-train-ticket/query-list?page=1&size=5&trainCode=D1&start=南京&end=广州
+Content-Type: application/json
+
+###

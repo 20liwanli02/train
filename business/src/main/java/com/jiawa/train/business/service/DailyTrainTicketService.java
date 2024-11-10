@@ -34,6 +34,7 @@ import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings({"all"})
 @Service
 public class DailyTrainTicketService {
 
@@ -68,12 +69,14 @@ public class DailyTrainTicketService {
         return null;
     }
 
+    // @CachePut：刷新缓存空间
+    // 因为和mysql或者mybatis不一样，增删改不会清除Sprign Boot内置缓存
     @CachePut(value = "DailyTrainTicketService.queryList")
     public PageResp<DailyTrainTicketQueryResp> queryList2(DailyTrainTicketQueryReq req) {
         return queryList(req);
     }
 
-    // @Cacheable(value = "DailyTrainTicketService.queryList")
+    @Cacheable(value = "DailyTrainTicketService.queryList")
     public PageResp<DailyTrainTicketQueryResp> queryList(DailyTrainTicketQueryReq req) {
         // 常见的缓存过期策略
         // TTL 超时时间
