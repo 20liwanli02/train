@@ -112,6 +112,7 @@
 import {defineComponent, ref, onMounted, watch, computed} from "vue";
 import {notification} from "ant-design-vue";
 import axios from "axios";
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   name: "order-view",
@@ -121,6 +122,8 @@ export default defineComponent({
     const passengerChecks = ref([]);
     const dailyTrainTicket = SessionStorage.get(SESSION_ORDER) || {};
     console.log("下单的车次信息", dailyTrainTicket);
+
+    const router = useRouter();
 
     const SEAT_TYPE = window.SEAT_TYPE;
     console.log(SEAT_TYPE)
@@ -331,6 +334,8 @@ export default defineComponent({
           // lineModalVisible.value = true;
           // confirmOrderId.value = data.content;
           // queryLineCount();
+
+          router.push("/cust-success");
         } else {
           notification.error({description: data.message});
         }

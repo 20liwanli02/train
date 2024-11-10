@@ -34,6 +34,12 @@ const routes = [
         },{
             path: 'my-ticket',
             component: () => import('../views/main/my-ticket.vue')
+        },{
+            path: 'cust-success',
+            component: () => import('../views/notice/cust-success.vue')
+        },{
+            path: 'cust-error',
+            component: () => import('../views/notice/cust-error.vue')
         },
         ]
     },

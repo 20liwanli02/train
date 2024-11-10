@@ -25,6 +25,16 @@
           <coffee-outlined/> &nbsp; 我的车票
         </router-link>
       </a-menu-item>
+      <a-menu-item key="/cust-success">
+        <router-link to="/cust-success">
+          <coffee-outlined/> &nbsp; success
+        </router-link>
+      </a-menu-item>
+      <a-menu-item key="/cust-error">
+        <router-link to="/cust-error">
+          <coffee-outlined/> &nbsp; error
+        </router-link>
+      </a-menu-item>
     </a-menu>
   </a-layout-sider>
 </template>
