@@ -37,6 +37,7 @@ export default defineComponent({
      * 查询所有的车次，用于车次下拉框
      */
     const queryAllTrain = () => {
+      // 前端使用缓存，避免页面跳动就再次对后端进行请求
       let list = SessionStorage.get(SESSION_ALL_TRAIN);
       if (Tool.isNotEmpty(list)) {
         console.log("queryAllTrain 读取缓存");

@@ -128,3 +128,18 @@ http://localhost:9000/welcome
 The expression ${artifactId} is deprecated. Please use ${project.artifactId} instead.
 It is highly recommended to fix these problems because they threaten the stability of your build.
 For this reason, future Maven versions might no longer support building such malformed projects.
+
+44.缓存问题
+缓存击穿：key失效，瞬时大量请求查询mysql
+方案：定时任务刷新缓存
+不足：缓存错误，不只是key没了，整个缓存都没了，还是会瞬时的大量请求mysql
+方案：分布式锁，抢到锁进入，抢不到直接失败
+
+缓存穿透：数据库没有数据，查询出来为空放入缓存或者不放入缓存，当判断缓存时，发现为空或者不放入缓存的情况都会直接查询数据库，瞬时大量请求查询数据库
+方案：分布式锁
+方案：空列表存入缓存，具体区分null还是[]
+
+缓存雪崩：短时间大量key失效
+隐式解决了一部分请求
+锁：只能解决一个key的问题，外面还是有很多请求
+方案：限流
