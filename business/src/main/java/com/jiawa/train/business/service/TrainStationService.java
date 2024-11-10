@@ -62,6 +62,12 @@ public class TrainStationService {
         TrainStationExample trainStationExample = new TrainStationExample();
         trainStationExample.setOrderByClause("id desc");
         TrainStationExample.Criteria criteria = trainStationExample.createCriteria();
+        // 动态 SQL 语句
+        if (!(ObjectUtil.isEmpty(req.getTrainCode()))) {
+            // 条件查询
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+//            selectByTrainCode(req.getTrainCode());
+        }
 
         LOG.info("查询页码：{}",req.getPage());
         LOG.info("每页条数：{}",req.getSize());

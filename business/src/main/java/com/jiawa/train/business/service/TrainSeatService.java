@@ -53,6 +53,11 @@ public class TrainSeatService {
         TrainSeatExample trainSeatExample = new TrainSeatExample();
         trainSeatExample.setOrderByClause("train_code asc, carriage_index asc, carriage_seat_index asc");
         TrainSeatExample.Criteria criteria = trainSeatExample.createCriteria();
+        // 动态 SQL 语句
+        if (!(ObjectUtil.isEmpty(req.getTrainCode()))) {
+            // 条件查询
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+        }
 
         LOG.info("查询页码：{}",req.getPage());
         LOG.info("每页条数：{}",req.getSize());

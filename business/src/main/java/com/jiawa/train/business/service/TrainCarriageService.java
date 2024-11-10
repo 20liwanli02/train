@@ -62,6 +62,11 @@ public class TrainCarriageService {
         TrainCarriageExample trainCarriageExample = new TrainCarriageExample();
         trainCarriageExample.setOrderByClause("train_code asc, `index` asc");
         TrainCarriageExample.Criteria criteria = trainCarriageExample.createCriteria();
+        // 动态 SQL 语句
+        if (!(ObjectUtil.isEmpty(req.getTrainCode()))) {
+            // 条件查询
+            criteria.andTrainCodeEqualTo(req.getTrainCode());
+        }
 
         LOG.info("查询页码：{}",req.getPage());
         LOG.info("每页条数：{}",req.getSize());
