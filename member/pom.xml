@@ -51,6 +51,7 @@
     </configuration>
     打出来的jar无法被依赖，导致generator依赖时找不到jar
     -->
+    <!-- 打包 -->
     <build>
         <plugins>
             <plugin>

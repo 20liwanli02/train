@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 统一异常处理、数据预处理等
- * 专门给cintroller用，用来拦截接口的
+ * 专门给controller用，用来拦截接口的
  */
 @ControllerAdvice//实现拦截器效果
 public class ControllerExceptionHandler {

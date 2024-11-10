@@ -43,6 +43,8 @@ public class PassengerController {
     /**
      * 删除乘车人信息
      * PathVariable：路径上的变量（id）
+     * @PathVariable Long id：这个注解将URI模板变量{id}的值绑定到方法的id参数上。
+     * Spring会自动将匹配的部分转换为Long类型的值，并将其传递给id参数
      */
     @DeleteMapping("/delete/{id}")
     public CommonResp<Object> delete(@PathVariable Long id){

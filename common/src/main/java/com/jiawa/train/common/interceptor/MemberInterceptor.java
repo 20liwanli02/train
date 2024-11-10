@@ -32,6 +32,7 @@ public class MemberInterceptor implements HandlerInterceptor {
             JSONObject loginMember = JwtUtil.getJSONObject(token);
             LOG.info("当前登录会员：{}", loginMember);
             MemberLoginResp member = JSONUtil.toBean(loginMember, MemberLoginResp.class);
+
             LoginMemberContext.setMember(member);
         }
         LOG.info("MemberInterceptor结束");
