@@ -20,6 +20,7 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -80,6 +81,7 @@ public class TrainService {
     /**
      * 查询所有车次
      */
+    @Transactional // mybatis 一级缓存，这个方法没有结束，事务就不会提交
     public List<TrainQueryResp> queryAll(){
         List<Train> trainlist = selectAll();
         return BeanUtil.copyToList(trainlist, TrainQueryResp.class);
